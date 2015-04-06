@@ -224,8 +224,12 @@ class HTRouter {
             /**
              * @var $file SplFileInfo
              */
-            $p = $file->getPathName();
+            //$p = $file->getPathName();
+            $pee = $file;
+            $pee = explode("htrouter.phar",$pee);    // Remove junk
+            $p = $pee[1];
             $p = str_replace($path, "", $p);    // Remove base path
+            $p = str_replace("/Module\\", "", $p);    // Remove extra location reference
             $p = str_replace("/", "\\", $p);    // Change / into \
             $p = str_replace(".php", "", $p);   // Remove extension
             $class = "\\HTRouter\\Module\\".$p; // Now we have got our actual class
